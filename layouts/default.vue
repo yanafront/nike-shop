@@ -18,17 +18,16 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-footer :absolute="!fixed" app>
-      <span>&copy; {{ new Date().getFullYear() }}</span>
-    </v-footer>
+    <the-footer />
   </v-app>
 </template>
 
 <script>
 import TheHeader from "../components/common/header/TheHeader"
+import TheFooter from "../components/common/footer/TheFooter"
 
 export default {
-  components: { TheHeader },
+  components: { TheFooter, TheHeader },
   data() {
     return {
       colors: ["deep-purple accent-4", "error", "teal darken-1"],

@@ -1,10 +1,19 @@
 <template>
   <div class="w-100 ma-0">
-    <v-menu v-for="(el, index) in menu" :key="index" offset-y flat>
+    <v-menu v-for="(el, index) in menu" :key="index" content-class="mt-6" rounded="xl" offset-y flat>
       <template #activator="{ on, attrs }">
-        <v-btn light text v-bind="attrs" v-on="on"> {{ el.title }} </v-btn>
+        <a
+          light
+          text
+          v-bind="attrs"
+          class="black--text px-6 nav-item"
+          v-on="on"
+        >
+          {{ el.title }}
+          <v-icon>mdi-chevron-down</v-icon>
+        </a>
       </template>
-      <v-list>
+      <v-list class="pa-0">
         <v-list-item v-for="(item, i) in el.items" :key="i" link>
           <v-list-item-title v-text="item.title" />
         </v-list-item>
