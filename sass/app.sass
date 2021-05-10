@@ -12,8 +12,63 @@ $max-width: 1400px
   font-family: "Aeroport", sans-serif
 a
   text-decoration: none
+.v-application .v-main a
+  color: black
+.v-application .v-main a:hover
+  text-decoration: underline
+.v-main .v-breadcrumbs li a
+  color: #999999
+.v-main .v-breadcrumbs li.v-breadcrumbs__divider
+  padding: 0 5px
+.relative
+  position: relative
+.pointer
+  cursor: pointer
+.app-content
+  padding: 50px 0
+  max-width: 1366px
+  width: 100%
+  margin: 0 auto
 .nav-item
   font-size: 20px
 .footer-content
   max-width: 1366px
   width: 100%
+.list-item
+  display: inline-block
+  margin-right: 10px
+.list-enter-active,
+.list-leave-active
+  transition: all 1s
+.list-enter,
+.list-leave-to
+  opacity: 0
+  transform: translateY(30px)
+.vertical-carousel
+  max-height: 300px
+  overflow: hidden
+  scroll-behavior: smooth
+.product-name
+  font-size: 40px
+  font-weight: 700
+.subtitle
+  font-size: 18px
+  font-weight: 700
+.size .v-chip.v-size--default
+  border-radius: 2px
+.price
+  font-size: 24px
+.through-text
+  text-decoration: line-through
+.theme--light .size .v-chip
+  min-width: 52px
+  height: 52px
+  justify-content: center
+  border-radius: 8px
+  text-align: center
+.theme--light .size .v-chip:not(.v-chip--active)
+  background: white
+  border: 1px solid #DBDBDB
+  &:hover
+    background: white
+    border: 1px solid black

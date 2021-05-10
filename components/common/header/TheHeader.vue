@@ -1,8 +1,6 @@
 <template>
-  <v-app-bar :clipped-left="clipped" color="white" fixed app flat>
-    <v-row
-      class="pa-10 justify-space-between flex-nowrap ma-0 mt-10 align-center"
-    >
+  <v-app-bar :clipped-left="clipped" color="white" height="80" fixed app flat>
+    <v-row class="pa-6 justify-space-between flex-nowrap ma-0 align-center">
       <logo />
       <the-navigation-menu class="flex-grow-1 d-flex justify-center" />
       <v-row class="pa-0 ma-0 flex-grow-0">

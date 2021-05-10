@@ -2,9 +2,9 @@
   <v-app>
     <the-header />
     <v-main>
-      <v-container>
+      <div class="app-content">
         <nuxt />
-      </v-container>
+      </div>
     </v-main>
     <v-navigation-drawer v-model="rightDrawer" :right="right" temporary fixed>
       <v-list>

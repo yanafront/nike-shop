@@ -1,6 +1,13 @@
 <template>
   <div class="w-100 ma-0">
-    <v-menu v-for="(el, index) in menu" :key="index" content-class="mt-6" rounded="xl" offset-y flat>
+    <v-menu
+      v-for="(el, index) in menu"
+      :key="index"
+      content-class="mt-6"
+      rounded="xl"
+      offset-y
+      flat
+    >
       <template #activator="{ on, attrs }">
         <a
           light
