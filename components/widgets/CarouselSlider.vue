@@ -119,8 +119,10 @@ export default {
       if (this.scrollSlider < 0) {
         this.scrollSlider = 0
       }
+
       block.scrollTo({
-        top: this.scrollSlider
+        top: this.scrollSlider,
+        behavior: "smooth"
       })
     },
     scrollToImage(index) {

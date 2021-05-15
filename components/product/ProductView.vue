@@ -14,7 +14,7 @@
       <div class="product-name f-bold">
         {{ product.title }}
       </div>
-      <div class="price mt-2">
+      <div class="small-title-section mt-2">
         <span
           :class="
             !product.salesPrice
