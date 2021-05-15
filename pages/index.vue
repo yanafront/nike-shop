@@ -1,14 +1,21 @@
 <template>
   <v-row justify="center" align="center" class="ma-0 py-0 px-4">
-    <product-view :product="product[3]" />
+    <product-view :product="products.find(el => el.id == selectProductId)" />
+    <v-col class="pa-0 ma-0">
+      <v-divider class="my-10" />
+      <resemblant-product :products="products" :select-product-id="selectProductId" />
+    </v-col>
   </v-row>
 </template>
 
 <script>
+import ResemblantProduct from "../components/product/ResemblantProduct"
 export default {
+  components: { ResemblantProduct },
   data() {
     return {
-      product: [
+      selectProductId: 1,
+      products: [
         {
           id: 1,
           title: "Кроссовки AIR MAX 270 WOMEN'S SHOE",

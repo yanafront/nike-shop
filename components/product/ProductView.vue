@@ -99,7 +99,7 @@ export default {
   props: {
     product: {
       type: Object,
-      default: null
+      required: true
     }
   },
   data() {
