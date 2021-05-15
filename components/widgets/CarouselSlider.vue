@@ -1,14 +1,14 @@
 <template>
   <v-row class="pa-0 ma-0 flex-nowrap">
-    <v-col class="pa-0 ma-0 mr-4">
-      <div class="vertical-carousel-container">
+    <v-col class="pa-0 ma-0 mr-4 vertical-slider">
+      <div>
         <div
           class="pointer justify-center d-flex mb-2"
           @click="scrollToElement(0)"
         >
           <v-icon>mdi-chevron-up</v-icon>
         </div>
-        <div id="slider" class="vertical-carousel">
+        <div id="slider" class="vertical-slider__images">
           <transition-group name="list" tag="div">
             <v-img
               v-for="(image, index) in images"
@@ -35,12 +35,13 @@
         light
         icon
         fab
-        class="black--text px-6 nav-slider nav-slider__left"
+        class="black--text px-6 navigation-slider-button navigation-slider-button_left"
+        @click="$emit('changeImagePreview', 'prew')"
       >
         <v-icon>mdi-chevron-left</v-icon>
       </v-btn>
       <div
-        class="zoom-on-hover"
+        class="image-preview"
         :class="{ zoomed }"
         @touchstart="touchzoom"
         @mousemove="move"
@@ -54,7 +55,8 @@
         light
         icon
         fab
-        class="black--text px-6 nav-slider nav-slider__rigth"
+        class="black--text px-6 navigation-slider-button navigation-slider-button_rigth"
+        @click="$emit('changeImagePreview', 'next')"
       >
         <v-icon>mdi-chevron-right</v-icon>
       </v-btn>
@@ -124,7 +126,7 @@ export default {
     scrollToImage(index) {
       const elem = document.getElementById(`slide-item-${index}`)
       elem.scrollIntoView({ block: "center", behavior: "smooth" })
-      this.$emit('selectImage', index);
+      this.$emit("selectImage", index)
     },
     pageOffset(el) {
       const rect = el.getBoundingClientRect()
@@ -204,27 +206,37 @@ export default {
 }
 </script>
 <style lang="sass">
-.zoom-on-hover
+.vertical-slider
+  max-width: 60px
+  &__images
+    max-height: 640px
+    overflow: hidden
+.image-preview
   position: relative
   overflow: hidden
-.zoom-on-hover .normal
-  width: 100%
-.zoom-on-hover .zoom
-  position: absolute
-  opacity: 0
-  cursor: crosshair
-  transform-origin: top left
-.zoom-on-hover.zoomed .zoom
-  opacity: 1
-.zoom-on-hover.zoomed .normal
-  opacity: 0
-.nav-slider
+  height: 700px
+  .normal
+    width: 100%
+    height: 100%
+    object-fit: cover
+  .zoom
+    position: absolute
+    opacity: 0
+    cursor: crosshair
+    transform-origin: top left
+  &.zoomed
+    .zoom
+      opacity: 1
+  &.zoomed
+    .normal
+      opacity: 0
+.navigation-slider-button
   position: absolute
   z-index: 2
-  top: 50%
-  &.nav-slider__left
+  top: calc(50% - 50px)
+  &_left
     left: 5px
-  &.nav-slider__rigth
+  &_rigth
     right: 5px
 .slide-item
   max-width: 60px

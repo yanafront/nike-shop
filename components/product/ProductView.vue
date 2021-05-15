@@ -1,13 +1,15 @@
 <template>
   <v-row class="pa-0 ma-0 flex-nowrap">
     <carousel-slider
-      :img-normal="product.images[0].src"
-      :img-zoom="product.images[0].imgZoom"
+      :img-normal="product.images[imgIndex].src"
+      :img-zoom="product.images[imgIndex].imgZoom"
       :scale="2"
       :images="product.images"
-      class="col-6"
+      class="col-5"
+      @selectImage="selectImage"
+      @changeImagePreview="changeImagePreview"
     />
-    <div class="col-6 pa-0 ma-0 ml-12">
+    <div class="col-7 pa-0 ma-0 pl-12">
       <v-breadcrumbs :items="breadcrumbs" class="pa-0 ma-0" />
       <div class="product-name f-bold">
         {{ product.title }}
@@ -63,16 +65,37 @@
           {{ color }}
         </v-chip>
       </v-chip-group>
+      <v-row class="pa-0 ma-0 mt-8">
+        <input-number
+          :value="product.value"
+          :max="product.count"
+          class="mr-4"
+        />
+        <v-btn class="black white--text" large>В корзину</v-btn>
+      </v-row>
       <v-divider class="my-10" />
-      <v-btn class="black white--text">В корзину</v-btn>
+      <v-col class="pa-0 ma-0">
+        <div class="font-weight-bold mb-2">
+          {{ product.smallDescription }}
+        </div>
+        <div class="mb-2">
+          <span class="font-weight-bold">Состав:</span>
+          {{ product.structure }}
+        </div>
+        <div class="mb-2">
+          <div class="font-weight-bold mb-2">Рекомендация по уходу:</div>
+          {{ product.careRecommendation }}
+        </div>
+      </v-col>
     </div>
   </v-row>
 </template>
 <script>
 import CarouselSlider from "../widgets/CarouselSlider"
+import InputNumber from "../ui/InputNumber"
 export default {
   name: "ProductView",
-  components: { CarouselSlider },
+  components: { InputNumber, CarouselSlider },
   props: {
     product: {
       type: Object,
@@ -83,6 +106,7 @@ export default {
     return {
       selectColor: null,
       selectSize: null,
+      imgIndex: 0,
       breadcrumbs: [
         {
           text: "Главная",
@@ -110,6 +134,19 @@ export default {
           href: "/"
         }
       ]
+    }
+  },
+  methods: {
+    selectImage(index) {
+      this.imgIndex = index
+    },
+    changeImagePreview(step) {
+      if (step === "prew" && this.imgIndex) {
+        this.imgIndex--
+      }
+      if (step === "next" && this.imgIndex < this.product.images.length - 1) {
+        this.imgIndex++
+      }
     }
   }
 }
