@@ -22,7 +22,7 @@
       <nuxt-link
         v-for="(product, index) in products"
         :key="index"
-        to="/"
+        :to="{ path: `/catalog/${product.id}` }"
         :class="['pa-0 ma-0 history__item', index && 'ml-8']"
       >
         <v-row class="pa-0 ma-0">

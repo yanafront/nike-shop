@@ -7,7 +7,7 @@
         <v-btn class="mr-4" icon>
           <search-icon />
         </v-btn>
-        <v-btn icon>
+        <v-btn icon @click="$emit('setCardDrawer')">
           <car-icon />
         </v-btn>
       </v-row>

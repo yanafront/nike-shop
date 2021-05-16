@@ -5,7 +5,7 @@
       <nuxt-link
         v-for="(item, index) in resemblarProducts"
         :key="index"
-        to="/"
+        :to="{ path: `/catalog/${item.id}` }"
         class="col-4 resemblant-card"
       >
         <v-col class="pa-0 ma-0 justify-center">

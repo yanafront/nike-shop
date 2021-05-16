@@ -1,6 +1,7 @@
 <template>
   <v-app>
-    <the-header />
+    <the-header @setCardDrawer="cardDrawer = !cardDrawer" />
+    <cart :value="cardDrawer" @setCardDrawer="cardDrawer = !cardDrawer" />
     <v-main>
       <div class="app-content">
         <nuxt />
@@ -30,6 +31,7 @@ export default {
   components: { TheFooter, TheHeader },
   data() {
     return {
+      cardDrawer: false,
       colors: ["deep-purple accent-4", "error", "teal darken-1"],
       navItems: [...Array(4)].map((_, i) => `Item ${i}`),
       drawer: false,
