@@ -15,22 +15,28 @@
         </v-btn>
       </v-row>
     </v-row>
-    <v-row id="scroll" class="pa-0 ma-0 overflow-hidden my-6 flex-nowrap history">
+    <v-row
+      id="scroll"
+      class="pa-0 ma-0 overflow-hidden my-6 flex-nowrap history"
+    >
       <nuxt-link
         v-for="(product, index) in products"
         :key="index"
         to="/"
-        class="col-3 pa-0 ma-0 history__item"
+        :class="['pa-0 ma-0 history__item', index && 'ml-8']"
       >
         <v-row class="pa-0 ma-0">
           <v-img :src="product.images[0].src" max-width="70" height="100" />
           <v-col class="pa-0 ma-0 ml-4">
-            <div>{{ product.title }}</div>
+            <div v-if="product.salesPrice" class="sales-badge mb-2">
+              {{ getSale(product) }} %
+            </div>
+            <div class="subtitle-small">{{ product.title }}</div>
             <div>
               <span
                 :class="
                   !product.salesPrice
-                    ? 'black--text f-bold'
+                    ? 'black--text font-weight-bold'
                     : 'through-text grey--text'
                 "
               >
@@ -56,6 +62,9 @@ export default {
     }
   },
   methods: {
+    getSale(product) {
+      return Math.round(100 - (product.salesPrice / product.price) * 100)
+    },
     scrollContainer(params) {
       const scroll = document.getElementById("scroll")
       const step = params === "prev" ? -200 : 200
@@ -65,11 +74,20 @@ export default {
 }
 </script>
 <style lang="sass">
+.sales-badge
+  border-radius: 24px
+  display: inline-block
+  padding: 2px 5px
+  background: #FE030A
+  color: white
+  font-weight: 200
+  font-size: 12px
 .browsing-history
   .history
     .history__item
       transition: .3s
+      min-width: 320px
       &:hover
         text-decoration: none
-        color: #777777
+        color: #C37575
 </style>

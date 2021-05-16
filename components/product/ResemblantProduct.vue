@@ -51,7 +51,7 @@ export default {
     transition: .3s
     &:hover
       text-decoration: none
-      color: #777777
+      color: #C37575
     &__title
     font-size: 20px
     font-weight: 400
