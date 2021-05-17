@@ -1,19 +1,29 @@
 <template>
   <v-row class="ma-0 counter justify-space-between">
-    <div class="pointer" @click="value > 0 && value--">
+    <div
+      class="pointer"
+      @click="modelInput > 0 && modelInput--, $emit('changeValue', modelInput)"
+    >
       <v-icon size="18">mdi-minus</v-icon>
     </div>
     <input
       id="num_count"
-      v-model="value"
+      v-model="modelInput"
       type="number"
       :step="step"
       :min="min"
       :max="max"
       class="counter__input"
       size="4"
+      :disabled="!max"
+      @change="$emit('changeValue', modelInput)"
     />
-    <div class="pointer" @click="value < max && value++">
+    <div
+      class="pointer"
+      @click="
+        modelInput < max && modelInput++, $emit('changeValue', modelInput)
+      "
+    >
       <v-icon size="18">mdi-plus</v-icon>
     </div>
   </v-row>
@@ -33,12 +43,19 @@ export default {
     step: {
       type: Number,
       default: 1
+    },
+    value: {
+      type: Number,
+      default: 1
     }
   },
   data() {
     return {
-      value: 1
+      modelInput: 0
     }
+  },
+  mounted() {
+    this.modelInput = this.value
   }
 }
 </script>

@@ -66,12 +66,20 @@
         </v-chip>
       </v-chip-group>
       <v-row class="pa-0 ma-0 mt-8">
-        <input-number
-          :value="product.value"
-          :max="product.count"
-          class="mr-4"
-        />
-        <v-btn class="black white--text" large>В корзину</v-btn>
+        <template v-if="product.count">
+          <input-number
+            :value="product.value"
+            :max="product.count"
+            class="mr-4"
+            @changeValue="changeInputValue"
+          />
+          <v-btn class="black white--text" large @click="addProductCart(product)">
+            В корзину
+          </v-btn>
+        </template>
+        <template v-else>
+          Товара нет в наличии
+        </template>
       </v-row>
       <v-divider class="my-10" />
       <v-col class="pa-0 ma-0">
@@ -104,6 +112,7 @@ export default {
   },
   data() {
     return {
+      countProduct: 1,
       selectColor: null,
       selectSize: null,
       imgIndex: 0,
@@ -137,6 +146,35 @@ export default {
     }
   },
   methods: {
+    changeInputValue(value) {
+      console.log(value)
+      this.countProduct = value
+    },
+    addProductCart(product) {
+      const params = {
+        price: product.price,
+        salesPrice: product.salesPrice,
+        images: product.images,
+        color: this.selectColor,
+        size: this.selectSize,
+        value: this.countProduct,
+        title: product.title,
+        id: product.id
+      }
+      console.log(this.countProduct)
+      if (this.countProduct) {
+        this.$notify({
+          type: "success",
+          text: "Товар добавлен в корзину!"
+        })
+        this.$store.commit("addProductInCart", params)
+      } else {
+        this.$notify({
+          type: "error",
+          text: "Выберите товар!"
+        })
+      }
+    },
     selectImage(index) {
       this.imgIndex = index
     },

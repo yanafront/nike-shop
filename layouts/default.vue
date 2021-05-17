@@ -20,6 +20,7 @@
       </v-list>
     </v-navigation-drawer>
     <the-footer />
+    <notifications classs="mb-8 mr-8" position="bottom right" />
   </v-app>
 </template>
 
