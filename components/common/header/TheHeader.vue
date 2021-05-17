@@ -7,7 +7,7 @@
         <v-btn class="mr-4" icon>
           <search-icon />
         </v-btn>
-        <v-btn icon @click="$emit('setCardDrawer')">
+        <v-btn icon @click="openCart">
           <car-icon />
         </v-btn>
       </v-row>
@@ -30,6 +30,12 @@ export default {
   data() {
     return {
       clipped: false
+    }
+  },
+  methods: {
+    openCart() {
+      this.$emit("setCardDrawer")
+      window.scroll(0, 0)
     }
   }
 }

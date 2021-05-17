@@ -1,15 +1,15 @@
 <template>
-  <v-row class="pa-0 ma-0 flex-nowrap">
+  <v-row class="pa-0 ma-0 flex-lg-nowrap flex-wrap">
     <carousel-slider
       :img-normal="product.images[imgIndex].src"
       :img-zoom="product.images[imgIndex].imgZoom"
       :scale="2"
       :images="product.images"
-      class="col-5"
+      class="col-lg-5 col-md-5 col-12"
       @selectImage="selectImage"
       @changeImagePreview="changeImagePreview"
     />
-    <div class="col-7 pa-0 ma-0 pl-12">
+    <div class="col-lg-7 col-md-7 col-12 pa-0 ma-0 pl-lg-12 mt-lg-0 mt-md-0 pl-md-12 mt-12">
       <v-breadcrumbs :items="breadcrumbs" class="pa-0 ma-0" />
       <div class="product-name f-bold">
         {{ product.title }}

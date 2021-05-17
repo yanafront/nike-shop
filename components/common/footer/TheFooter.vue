@@ -2,13 +2,13 @@
   <v-footer class="py-16">
     <div class="footer-content mx-auto">
       <v-row class="pa-0 ma-0 col-12 w-100 align-start">
-        <v-row class="col-8 pa-0 ma-0 justify-start">
+        <v-row class="col-lg-8 col-md-8 col-12 pa-0 ma-0 justify-start">
           <footer-menu
             v-for="(menu, i) in footerMenu"
             :key="i"
             :title="menu.title"
             :items="menu.items"
-            class="col-4"
+            class="col-lg-4 col-md-4 col-12 mb-12 mb-lg-0 mb-md-0"
           />
         </v-row>
         <v-row class="col-4 pa-0 ma-0 align-center">

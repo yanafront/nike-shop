@@ -1,31 +1,33 @@
 <template>
   <div class="w-100 ma-0">
-    <v-menu
-      v-for="(el, index) in menu"
-      :key="index"
-      content-class="mt-6"
-      rounded="xl"
-      offset-y
-      flat
-    >
-      <template #activator="{ on, attrs }">
-        <a
-          light
-          text
-          v-bind="attrs"
-          class="black--text px-6 nav-item"
-          v-on="on"
-        >
-          {{ el.title }}
-          <v-icon>mdi-chevron-down</v-icon>
-        </a>
-      </template>
-      <v-list class="pa-0">
-        <v-list-item v-for="(item, i) in el.items" :key="i" link>
-          <v-list-item-title v-text="item.title" />
-        </v-list-item>
-      </v-list>
-    </v-menu>
+    <template v-if="isDesctop  > 1100">
+      <v-menu
+        v-for="(el, index) in menu"
+        :key="index"
+        content-class="mt-6"
+        rounded="xl"
+        offset-y
+        flat
+      >
+        <template #activator="{ on, attrs }">
+          <a
+            light
+            text
+            v-bind="attrs"
+            class="black--text px-6 nav-item"
+            v-on="on"
+          >
+            {{ el.title }}
+            <v-icon>mdi-chevron-down</v-icon>
+          </a>
+        </template>
+        <v-list class="pa-0">
+          <v-list-item v-for="(item, i) in el.items" :key="i" link>
+            <v-list-item-title v-text="item.title" />
+          </v-list-item>
+        </v-list>
+      </v-menu>
+    </template>
   </div>
 </template>
 <script>
@@ -83,6 +85,11 @@ export default {
         }
       ],
       navItems: [...Array(4)].map((_, i) => `Item ${i}`)
+    }
+  },
+  computed: {
+    isDesctop() {
+      return window.innerWidth
     }
   }
 }

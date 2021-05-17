@@ -10,7 +10,9 @@
   >
     <v-col class="pa-0 ma-0 d-flex flex-column h-100">
       <v-row class="pa-0 ma-0 flex-nowrap flex-grow-0">
-        <v-list-item-title class="cart__title mb-4">Твоя корзина</v-list-item-title>
+        <v-list-item-title class="cart__title mb-4"
+          >Твоя корзина</v-list-item-title
+        >
         <v-btn icon @click="$emit('setCardDrawer')">
           <v-icon class="black--text">mdi-close</v-icon>
         </v-btn>
@@ -79,7 +81,7 @@ export default {
   },
   methods: {
     deleteProductCart(id) {
-      this.$store.commit('deleteProductCart', id)
+      this.$store.commit("deleteProductCart", id)
     }
   }
 }
